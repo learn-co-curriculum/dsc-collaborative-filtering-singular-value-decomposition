@@ -1,4 +1,3 @@
-
 # Collaborative Filtering with Singular Value Decomposition
 
 ## Introduction
@@ -95,7 +94,7 @@ $$ r_{ij} = \frac{\sum_{k}{Similarities(u_i,u_k)r_{kj}}}{\text{number of ratings
 
 #### Item-item filtering  
 
-When someone looks at the similarity of one vector of an items ratings from every user and compares it to every other item. Now, the most similar items can be recommended to those that a customer has liked. This is similar to a content-based recommendation, except we are not looking at any actual characteristics of items. We are merely looking at who has liked an item and compared it to who has liked other items. Let's look at this in a table with the similarity metric as the Jaccard Index. To start off with, let's compare Toy Story and Cinderella. The union of everyone that has liked both movies is 5 and the intersection of the two movies is 1 (we can see that Taylor liked both Toy Story and Cinderella. The rest of the similarities have been filled in.
+When someone looks at the similarity of one vector of an item's ratings from every user and compares it to every other item. Now, the most similar items can be recommended to those that a customer has liked. This is similar to a content-based recommendation, except we are not looking at any actual characteristics of items. We are merely looking at who has liked an item and compared it to who has liked other items. Let's look at this in a table with the similarity metric as the Jaccard Index. To start off with, let's compare Toy Story and Cinderella. The union of everyone that has liked both movies is 5 and the intersection of the two movies is 1 (we can see that Taylor liked both Toy Story and Cinderella. The rest of the similarities have been filled in.
 
 
 
@@ -195,7 +194,7 @@ In simple terms, SVD is the factorization of a matrix into 3 matrices. So if we 
 
 $$ A = U\Sigma V^T$$
 
-Where $A$ is an $n x d$ matrix, $U$ is an $(n x r)$ orthogonal matrix, $𝚺$ is an $(r x r)$ nonnegative rectangular diagonal matrix, and $V$ is an $(r x d)$ orthogonal matrix.
+Where $A$ is a $n x d$ matrix, $U$ is a $n x r$ matrix, $𝚺$ is a $r x r$ is a diagonal matrix, and $V$ is a $r x d$ matrix.
 $U$ is also referred to as the __left singular vectors__, 𝚺 the __singular values__, and V the __right singular vectors__. 
 
 This decomposition can be viewed in the following illustration:  
@@ -254,7 +253,7 @@ print ('\nV.T:\n', vt)
     U:
      [[-2.21829477e-01  4.58445949e-02]
      [-8.50288016e-01  3.86369035e-01]
-     [-2.14780401e-19 -2.00071339e-20]
+     [ 2.50607631e-19 -1.97258636e-20]
      [ 3.88289052e-01  2.35719092e-01]
      [ 2.77549248e-01  8.90535654e-01]]
     
@@ -262,8 +261,8 @@ print ('\nV.T:\n', vt)
      [ 3.89366418 10.99269663]
     
     V.T:
-     [[-8.63729488e-01 -8.36282754e-19  5.03955724e-01]
-     [ 5.03955724e-01 -2.19932353e-19  8.63729488e-01]]
+     [[-8.63729488e-01  9.75781955e-19  5.03955724e-01]
+     [ 5.03955724e-01 -2.16840434e-19  8.63729488e-01]]
 
 
 In this example, consider $A$ as the __utility matrix__ with users and products links. 
@@ -290,11 +289,11 @@ u.dot(np.diag(s).dot(vt))
 
 
 
-    array([[ 1.00000000e+00,  6.11485906e-19, -5.55111512e-17],
-           [ 5.00000000e+00,  1.83460645e-18,  2.00000000e+00],
-           [ 6.11485906e-19,  7.47739084e-37, -6.11411539e-19],
-           [ 0.00000000e+00, -1.83423462e-18,  3.00000000e+00],
-           [ 4.00000000e+00, -3.05676023e-18,  9.00000000e+00]])
+    array([[ 1.00000000e+00, -9.52089627e-19,  2.77555756e-16],
+           [ 5.00000000e+00, -4.15152929e-18,  2.00000000e+00],
+           [-9.52089627e-19,  9.99170198e-37,  3.04459424e-19],
+           [ 8.88178420e-16,  9.13378273e-19,  3.00000000e+00],
+           [ 4.00000000e+00, -1.06822369e-18,  9.00000000e+00]])
 
 
 
@@ -310,10 +309,10 @@ np.round(u.dot(np.diag(s).dot(vt)))
 
 
 
-    array([[ 1.,  0., -0.],
-           [ 5.,  0.,  2.],
-           [ 0.,  0., -0.],
-           [ 0., -0.,  3.],
+    array([[ 1., -0.,  0.],
+           [ 5., -0.,  2.],
+           [-0.,  0.,  0.],
+           [ 0.,  0.,  3.],
            [ 4., -0.,  9.]])
 
 
